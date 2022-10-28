@@ -1,6 +1,6 @@
-# HexagonalMatrix
+# Hexagon Matrix
 
-The "HexagonalMatrix" object is a hexagonal matrix, where x, y and z are the coordinates of the cells. If we talk about the matrix in more detail, then at least 1 value of x, y or z must be equal to or less than the value 0;
+The "HexagonMatrix" object is a hexagonal matrix, where x, y and z are the coordinates of the cells. If we talk about the matrix in more detail, then at least 1 value of x, y or z must be equal to or less than the value 0;
 
 How the matrix works:
 1) To determine the coordinates, we use 3 parameters x, y and z. Also, we have a Radius that is equal to the maximum value of x, y and z;
