@@ -15,10 +15,12 @@ namespace m9studio.HexagonMatrix
         private T[] matrixY;
         private T[] matrixZ;
         private T matrixCenter;
-
         private int radius;
+
+
         public int Radius { get => radius; }
         public int Length { get => 3 * (int)Math.Pow(Radius, 2) + 3 * Radius + 1; }
+
 
         public HexagonMatrix(int radius)
         {
@@ -33,6 +35,8 @@ namespace m9studio.HexagonMatrix
             this.radius = radius;
         }
         public HexagonMatrix(int radius, T obj) => Fill(obj);
+
+
         public void Fill(T obj)
         {
             for (int i = 0; i < Radius; i++)
@@ -51,11 +55,10 @@ namespace m9studio.HexagonMatrix
         }
 
 
+        public T Get(HexagonPosition HexPos) => Get(HexPos.x, HexPos.y, HexPos.z);
         public T Get(int x, int y, int z)
         {
-            if (x > 0 && y > 0 && z > 0)
-                return default(T);
-            else if (x > Radius || y > Radius || z > Radius)
+            if (!isLocated(x, y, z))
                 return default(T);
             else if (x > 0 && y > 0)
                 return getAB(x, y, matrixXY);
@@ -72,20 +75,25 @@ namespace m9studio.HexagonMatrix
             else
                 return matrixCenter;
         }
+        public T GetXY(HexagonPosition HexPos) => GetXY(HexPos.x, HexPos.y);
         public T GetXY(int x, int y) => Get(x, y, 0);
+        public T GetXZ(HexagonPosition HexPos) => GetXZ(HexPos.x, HexPos.z);
         public T GetXZ(int x, int z) => Get(x, 0, z);
+        public T GetYZ(HexagonPosition HexPos) => GetYZ(HexPos.y, HexPos.z);
         public T GetYZ(int y, int z) => Get(0, y, z);
+        public T GetX(HexagonPosition HexPos) => GetX(HexPos.x);
         public T GetX(int x) => Get(x, 0, 0);
+        public T GetY(HexagonPosition HexPos) => GetY(HexPos.y);
         public T GetY(int y) => Get(0, y, 0);
+        public T GetZ(HexagonPosition HexPos) => GetZ(HexPos.z);
         public T GetZ(int z) => Get(0, 0, z);
         public T GetCenter() => matrixCenter;
 
 
+        public bool Set(T obj, HexagonPosition HexPos) => Set(obj, HexPos.x, HexPos.y, HexPos.z);
         public bool Set(T obj, int x, int y, int z)
         {
-            if (x > 0 && y > 0 && z > 0)
-                return false;
-            else if (x > Radius || y > Radius || z > Radius)
+            if (!isLocated(x, y, z))
                 return false;
             else if (x > 0 && y > 0)
                 return setAB(x, y, obj, matrixXY);
@@ -103,14 +111,30 @@ namespace m9studio.HexagonMatrix
                 matrixCenter = obj;
             return true;
         }
+        public bool SetXY(T obj, HexagonPosition HexPos) => SetXY(obj, HexPos.x, HexPos.y);
         public bool SetXY(T obj, int x, int y) => Set(obj, x, y, 0);
+        public bool SetXZ(T obj, HexagonPosition HexPos) => SetXZ(obj, HexPos.x, HexPos.z);
         public bool SetXZ(T obj, int x, int z) => Set(obj, x, 0, z);
+        public bool SetYZ(T obj, HexagonPosition HexPos) => SetYZ(obj, HexPos.y, HexPos.z);
         public bool SetYZ(T obj, int y, int z) => Set(obj, 0, y, z);
+        public bool SetX(T obj, HexagonPosition HexPos) => SetX(obj, HexPos.x);
         public bool SetX(T obj, int x) => Set(obj, x, 0, 0);
+        public bool SetY(T obj, HexagonPosition HexPos) => SetY(obj, HexPos.y);
         public bool SetY(T obj, int y) => Set(obj, 0, y, 0);
+        public bool SetZ(T obj, HexagonPosition HexPos) => SetZ(obj, HexPos.z);
         public bool SetZ(T obj, int z) => Set(obj, 0, 0, z);
         public bool SetCenter(T obj) => Set(obj, 0, 0, 0);
 
+
+        public bool isLocated(HexagonPosition HexPos) => isLocated(HexPos.x, HexPos.y, HexPos.y);
+        public bool isLocated(int x, int y, int z)
+        {
+            if (x > 0 && y > 0 && z > 0)
+                return false;
+            else if (x > Radius || y > Radius || z > Radius)
+                return false;
+            return true;
+        }
 
 
         private T getAB(int A, int B, T[,] matrix)
@@ -142,11 +166,9 @@ namespace m9studio.HexagonMatrix
         }
 
 
-
-
         public override string ToString()
         {
-            return $"HexagonalMatrix(Radius : {Radius})";
+            return $"HexagonMatrix: {{Radius: {Radius};}};";
         }
         public override int GetHashCode()
         {
@@ -174,10 +196,10 @@ namespace m9studio.HexagonMatrix
                 return false;
             if (obj.GetType() != this.GetType())
                 return false;
-            HexagonalMatrix<T> Obj;
+            HexagonMatrix<T> Obj;
             try
             {
-                Obj = (HexagonalMatrix<T>)obj;
+                Obj = (HexagonMatrix<T>)obj;
             }
             catch (Exception)
             {
