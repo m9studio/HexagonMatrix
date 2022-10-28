@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace m9studio.HexagonalMatrix
+namespace m9studio.HexagonMatrix
 {
-    public class HexagonalMatrix<T>
+    public class HexagonMatrix<T>
     {
         private T[,] matrixYZ;
         private T[,] matrixXY;
@@ -20,7 +20,7 @@ namespace m9studio.HexagonalMatrix
         public int Radius { get => radius; }
         public int Length { get => 3 * (int)Math.Pow(Radius, 2) + 3 * Radius + 1; }
 
-        public HexagonalMatrix(int radius)
+        public HexagonMatrix(int radius)
         {
             if (radius < 0)
                 radius = 0;
@@ -32,7 +32,7 @@ namespace m9studio.HexagonalMatrix
             matrixZ = new T[radius];
             this.radius = radius;
         }
-        public HexagonalMatrix(int radius, T obj) => Fill(obj);
+        public HexagonMatrix(int radius, T obj) => Fill(obj);
         public void Fill(T obj)
         {
             for (int i = 0; i < Radius; i++)
