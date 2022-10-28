@@ -42,5 +42,5 @@ obj.Get(-2, 0, -1);
 ``` 
 Also works with "Set" methods. 
 ![6](https://user-images.githubusercontent.com/44808807/198515498-5375e9bf-7365-41db-95aa-c9013ef7d5d3.png)
-12) The example uses Radius 4.
-11) If x, y and I all have values greater than 0 or greater than the "Radius" value, then the "Get" method will return "null", and the "Set" method will return "false".
+11) The example uses Radius 4.
+12) If x, y and I all have values greater than 0 or greater than the "Radius" value, then the "Get" method will return "null", and the "Set" method will return "false".
