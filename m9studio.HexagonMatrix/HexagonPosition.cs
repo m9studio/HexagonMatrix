@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace m9studio.HexagonMatrix
 {
-    public class HexagonPosition : ICloneable
+    public struct HexagonPosition : ICloneable
     {
-        private int _x = 0, _y = 0, _z = 0;
+        private int _x, _y, _z;
         /// <summary>
         /// Позиция x.
         /// </summary>
@@ -54,8 +50,7 @@ namespace m9studio.HexagonMatrix
         /// <summary>
         /// Конструктор, при котором: x = 0; y = 0; z = 0;
         /// </summary>
-
-        public HexagonPosition() : this(0, 0, 0) { }
+        /// public HexagonPosition() { }
         /// <summary>
         /// Копирует позицию с другой позиции.
         /// </summary>
@@ -72,6 +67,9 @@ namespace m9studio.HexagonMatrix
         /// <param name="z"></param>
         public HexagonPosition(int x, int y, int z)
         {
+            _x = 0;
+            _y = 0;
+            _z = 0;
             this.x = x;
             this.y = y;
             this.z = z;
@@ -82,15 +80,15 @@ namespace m9studio.HexagonMatrix
         /// <summary>
         /// переместиться по x, на одну позицию вверх.
         /// </summary>
-        public void MoveXUp() => MoveUp(ref _x, ref _y, ref _z);
+        public void MoveXUp() => MoveX(1);
         /// <summary>
         /// переместиться по x, на одну позицию вниз.
         /// </summary>
-        public void MoveXDown() => MoveDown(ref _x, ref _y, ref _z);
+        public void MoveXDown() => MoveX(-1);
         /// <summary>
         /// переместиться по x, step раз вверх.
         /// </summary>
-        public void MoveX(int step) => Move(step, MoveXUp, MoveXDown);
+        public void MoveX(int step) => Move(ref _x, ref _y, ref _z, step);
         /// <summary>
         /// переместиться по x, step раз вверх.
         /// </summary>
@@ -104,15 +102,15 @@ namespace m9studio.HexagonMatrix
         /// <summary>
         /// переместиться по y, на одну позицию вверх.
         /// </summary>
-        public void MoveYUp() => MoveUp(ref _y, ref _x, ref _z);
+        public void MoveYUp() => MoveY(1);
         /// <summary>
         /// переместиться по y, на одну позицию вниз.
         /// </summary>
-        public void MoveYDown() => MoveDown(ref _y, ref _x, ref _z);
+        public void MoveYDown() => MoveY(-1);
         /// <summary>
         /// переместиться по y, step раз вверх.
         /// </summary>
-        public void MoveY(int step) => Move(step, MoveYUp, MoveYDown);
+        public void MoveY(int step) => Move(ref _y, ref _x, ref _z, step);
         /// <summary>
         /// переместиться по y, step раз вверх.
         /// </summary>
@@ -126,15 +124,15 @@ namespace m9studio.HexagonMatrix
         /// <summary>
         /// переместиться по z, на одну позицию вверх.
         /// </summary>
-        public void MoveZUp() => MoveUp(ref _z, ref _x, ref _y);
+        public void MoveZUp() => MoveZ(1);
         /// <summary>
         /// переместиться по z, на одну позицию вниз.
         /// </summary>
-        public void MoveZDown() => MoveDown(ref _z, ref _x, ref _y);
+        public void MoveZDown() => MoveZ(-1);
         /// <summary>
         /// переместиться по z, step раз вверх.
         /// </summary>
-        public void MoveZ(int step) => Move(step, MoveZUp, MoveZDown);
+        public void MoveZ(int step) => Move(ref _z, ref _x, ref _y, step);
         /// <summary>
         /// переместиться по z, step раз вверх.
         /// </summary>
@@ -145,42 +143,45 @@ namespace m9studio.HexagonMatrix
         public void MoveZDown(int step) => MoveZ(-step);
         #endregion
         #region private Move
-        private delegate void funcMove();
-        private void Move(int step, funcMove fUp, funcMove fDown)
+        private void Move(ref int a, ref int b, ref int c, int step)
         {
-            if (step > 0)
-                for (int i = 0; i < step; i++)
-                    fUp();
-            else if (step < 0)
-                for (int i = 0; i > step; i--)
-                    fDown();
-        }
-        private void MoveUp(ref int moving, ref int a, ref int b)
-        {
-            if (moving > 0)
-                moving++;
-            else
+            if(step > 0)
             {
-                if (a > 0 && b > 0)
+                if(a == 0)
                 {
-
-                    if (a > 0)
-                        a--;
-                    if (b > 0)
-                        b--;
+                    int A = 0;
+                    if (b > c)
+                    {
+                        A = c;
+                    }
+                    else
+                    {
+                        A = b;
+                    }
+                    step -= A;
+                    b -= A;
+                    c -= A;
                 }
-                else
-                    moving++;
+                a += step;
             }
-        }
-        private void MoveDown(ref int moving, ref int a, ref int b)
-        {
-            if (moving > 0)
-                moving--;
-            else
+            else if(step < 0)
             {
-                a++;
-                b++;
+                step *= -1;
+                if(a > 0)
+                {
+                    if(step > a)
+                    {
+                        step -= a;
+                        a = 0;
+                    }
+                    else
+                    {
+                        a -= step;
+                        step = 0;
+                    }
+                }
+                b += step;
+                c += step;
             }
         }
         #endregion
@@ -212,5 +213,94 @@ namespace m9studio.HexagonMatrix
             return false;
         }
         public object Clone() => new HexagonPosition(this);
+
+
+
+        public static HexagonPosition operator +(HexagonPosition A, HexagonPosition B)
+        {
+            HexagonPosition C = (HexagonPosition)A.Clone();
+            C.MoveXUp(B.x);
+            C.MoveYUp(B.y);
+            C.MoveZUp(B.z);
+            return C;
+        }
+        public static HexagonPosition operator -(HexagonPosition A, HexagonPosition B)
+        {
+            HexagonPosition C = (HexagonPosition)A.Clone();
+            C.MoveXDown(B.x);
+            C.MoveYDown(B.y);
+            C.MoveZDown(B.z);
+            return C;
+        }
+        public static HexagonPosition operator *(HexagonPosition A, int B)
+        {
+            HexagonPosition C = (HexagonPosition)A.Clone();
+            B -= 1;
+            C.MoveXUp(A.x * B);
+            C.MoveYUp(A.y * B);
+            C.MoveZUp(A.z * B);
+            return C;
+        }
+        public static bool operator !=(HexagonPosition A, HexagonPosition B)
+        {
+            return !A.Equals(B);
+        }
+        public static bool operator ==(HexagonPosition A, HexagonPosition B)
+        {
+            return A.Equals(B);
+        }
+
+
+
+        /// <summary>
+        /// R = 0.5;
+        /// </summary>
+        /// <param name="CircumscribedCircle">inscribed circle == !circumscribed circle</param>
+        /// <returns></returns>
+        public Position ToPosition(bool CircumscribedCircle)
+        {
+            Position A = new Position();
+
+            if(z == 0)
+            {
+                A.x = x;
+                A.y = y - (x / 2.0);
+            }
+            else if(x == 0)
+            {
+                A.x = -z;
+                A.y = y - (z / 2.0);
+            }
+            else
+            {
+                A.x = x - z;
+                A.y = -(x + z) / 2.0;
+            }
+            if(CircumscribedCircle)
+            {
+                const double x = 0.5;
+                const double y = 0.8660254037844386;
+                A.x *= x * 1.5;
+                A.y *= y;
+            }
+            else
+            {
+                const double x = 0.5773502691896258;
+                const double y = 1;
+                A.x *= x * 1.5;
+                A.y *= y;
+            }
+            return A;
+        }
+        public Position ToPosition() => ToPosition(true);
+
+
+
+        public double Distance(HexagonPosition Position, bool CircumscribedCircle)
+        {
+            Position A = (this - Position).ToPosition(CircumscribedCircle);
+            return Math.Sqrt(Math.Pow(A.x, 2) + Math.Pow(A.y, 2));
+        }
+        public double Distance(HexagonPosition Position) => Distance(Position, true);
     }
 }
