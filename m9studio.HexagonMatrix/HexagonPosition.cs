@@ -2,144 +2,95 @@
 
 namespace m9studio.HexagonMatrix
 {
+    /// <include file='./lang-default.xml' path='Root/Position/HexagonPosition/*'/>
     public struct HexagonPosition : ICloneable
     {
         private int _x, _y, _z;
-        /// <summary>
-        /// Позиция x.
-        /// </summary>
-        public int x 
+        /// <include file='./lang-default.xml' path='Root/Position/X/*'/>
+        public int X 
         {
             get => _x;
             set
             {
                 if (value < 0)
                     _x = 0;
-                else if(y == 0 || z == 0)
+                else if(Y == 0 || Z == 0)
                     _x = value;
             }
         }
-        /// <summary>
-        /// Позиция y.
-        /// </summary>
-        public int y 
+        /// <include file='./lang-default.xml' path='Root/Position/Y/*'/>
+        public int Y 
         {
             get => _y;
             set
             {
                 if (value < 0)
                     _y = 0;
-                else if (x == 0 || z == 0)
+                else if (X == 0 || Z == 0)
                     _y = value;
             }
         }
-        /// <summary>
-        /// Позиция z.
-        /// </summary>
-        public int z 
+        /// <include file='./lang-default.xml' path='Root/Position/Z/*'/>
+        public int Z 
         { 
             get => _z;
             set
             {
                 if (value < 0)
                     _z = 0;
-                else if (y == 0 || x == 0)
+                else if (Y == 0 || X == 0)
                     _z = value;
             }
         }
-        /// <summary>
-        /// Конструктор, при котором: x = 0; y = 0; z = 0;
-        /// </summary>
-        /// public HexagonPosition() { }
-        /// <summary>
-        /// Копирует позицию с другой позиции.
-        /// </summary>
-        /// <param name="obj">Позиция которую копируем.</param>
-        public HexagonPosition(HexagonPosition obj) : this(obj.x, obj.y, obj.z) { }
-        /// <summary>
-        /// Конструктор, при котором хоть одно значение из x, y или z, должно быть 0;
-        /// </summary>
-        /// <remarks>
-        /// Все точки должны быть не меньше 0.
-        /// </remarks>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="z"></param>
+
+        /// <include file='./lang-default.xml' path='Root/Position/ConstructorObj/*'/>
+        public HexagonPosition(HexagonPosition obj) : this(obj.X, obj.Y, obj.Z) { }
+        /// <include file='./lang-default.xml' path='Root/Position/ConstructorXYZ/*'/>
         public HexagonPosition(int x, int y, int z)
         {
             _x = 0;
             _y = 0;
             _z = 0;
-            this.x = x;
-            this.y = y;
-            this.z = z;
+            this.X = x;
+            this.Y = y;
+            this.Z = z;
         }
 
         #region Move
         #region MoveX
-        /// <summary>
-        /// переместиться по x, на одну позицию вверх.
-        /// </summary>
+        /// <include file='./lang-default.xml' path='Root/Position/Move/X/Up/*'/>
         public void MoveXUp() => MoveX(1);
-        /// <summary>
-        /// переместиться по x, на одну позицию вниз.
-        /// </summary>
+        /// <include file='./lang-default.xml' path='Root/Position/Move/X/Down/*'/>
         public void MoveXDown() => MoveX(-1);
-        /// <summary>
-        /// переместиться по x, step раз вверх.
-        /// </summary>
+        /// <include file='./lang-default.xml' path='Root/Position/Move/X/Step/*'/>
         public void MoveX(int step) => Move(ref _x, ref _y, ref _z, step);
-        /// <summary>
-        /// переместиться по x, step раз вверх.
-        /// </summary>
+        /// <include file='./lang-default.xml' path='Root/Position/Move/X/UpStep/*'/>
         public void MoveXUp(int step) => MoveX(step);
-        /// <summary>
-        /// переместиться по x, step раз вниз.
-        /// </summary>
+        /// <include file='./lang-default.xml' path='Root/Position/Move/X/DownStep/*'/>
         public void MoveXDown(int step) => MoveX(-step);
         #endregion
         #region MoveY
-        /// <summary>
-        /// переместиться по y, на одну позицию вверх.
-        /// </summary>
+        /// <include file='./lang-default.xml' path='Root/Position/Move/Y/Up/*'/>
         public void MoveYUp() => MoveY(1);
-        /// <summary>
-        /// переместиться по y, на одну позицию вниз.
-        /// </summary>
+        /// <include file='./lang-default.xml' path='Root/Position/Move/Y/Down/*'/>
         public void MoveYDown() => MoveY(-1);
-        /// <summary>
-        /// переместиться по y, step раз вверх.
-        /// </summary>
+        /// <include file='./lang-default.xml' path='Root/Position/Move/Y/Step/*'/>
         public void MoveY(int step) => Move(ref _y, ref _x, ref _z, step);
-        /// <summary>
-        /// переместиться по y, step раз вверх.
-        /// </summary>
+        /// <include file='./lang-default.xml' path='Root/Position/Move/Y/UpStep/*'/>
         public void MoveYUp(int step) => MoveY(step);
-        /// <summary>
-        /// переместиться по y, step раз вниз.
-        /// </summary>
+        /// <include file='./lang-default.xml' path='Root/Position/Move/Y/DownStep/*'/>
         public void MoveYDown(int step) => MoveY(-step);
         #endregion
         #region MoveZ
-        /// <summary>
-        /// переместиться по z, на одну позицию вверх.
-        /// </summary>
+        /// <include file='./lang-default.xml' path='Root/Position/Move/Z/Up/*'/>
         public void MoveZUp() => MoveZ(1);
-        /// <summary>
-        /// переместиться по z, на одну позицию вниз.
-        /// </summary>
+        /// <include file='./lang-default.xml' path='Root/Position/Move/Z/Down/*'/>
         public void MoveZDown() => MoveZ(-1);
-        /// <summary>
-        /// переместиться по z, step раз вверх.
-        /// </summary>
+        /// <include file='./lang-default.xml' path='Root/Position/Move/Z/Step/*'/>
         public void MoveZ(int step) => Move(ref _z, ref _x, ref _y, step);
-        /// <summary>
-        /// переместиться по z, step раз вверх.
-        /// </summary>
+        /// <include file='./lang-default.xml' path='Root/Position/Move/Z/UpStep/*'/>
         public void MoveZUp(int step) => MoveZ(step);
-        /// <summary>
-        /// переместиться по z, step раз вниз.
-        /// </summary>
+        /// <include file='./lang-default.xml' path='Root/Position/Move/Z/DownStep/*'/>
         public void MoveZDown(int step) => MoveZ(-step);
         #endregion
         #region private Move
@@ -186,15 +137,54 @@ namespace m9studio.HexagonMatrix
         }
         #endregion
         #endregion
+        #region Operator
+        /// <inheritdoc/>
+        public static HexagonPosition operator +(HexagonPosition A, HexagonPosition B)
+        {
+            HexagonPosition C = (HexagonPosition)A.Clone();
+            C.MoveXUp(B.X);
+            C.MoveYUp(B.Y);
+            C.MoveZUp(B.Z);
+            return C;
+        }
+        /// <inheritdoc/>
+        public static HexagonPosition operator -(HexagonPosition A, HexagonPosition B)
+        {
+            HexagonPosition C = (HexagonPosition)A.Clone();
+            C.MoveXDown(B.X);
+            C.MoveYDown(B.Y);
+            C.MoveZDown(B.Z);
+            return C;
+        }
+        /// <inheritdoc/>
+        public static HexagonPosition operator *(HexagonPosition A, int B)
+        {
+            HexagonPosition C = (HexagonPosition)A.Clone();
+            B -= 1;
+            C.MoveXUp(A.X * B);
+            C.MoveYUp(A.Y * B);
+            C.MoveZUp(A.Z * B);
+            return C;
+        }
+        /// <inheritdoc/>
+        public static bool operator !=(HexagonPosition A, HexagonPosition B)
+        {
+            return !A.Equals(B);
+        }
+        /// <inheritdoc/>
+        public static bool operator ==(HexagonPosition A, HexagonPosition B)
+        {
+            return A.Equals(B);
+        }
+        #endregion
 
 
-
-
-
+        /// <inheritdoc/>
         public override string ToString()
         {
-            return $"HexagonPosition: {{x: {x}; y: {y}; z: {z};}};";
+            return $"HexagonPosition: {{x: {X}; y: {Y}; z: {Z};}};";
         }
+        /// <inheritdoc/>
         public override bool Equals(object obj)
         {
             if (Object.ReferenceEquals(this, obj))
@@ -206,50 +196,17 @@ namespace m9studio.HexagonMatrix
             HexagonPosition Obj = (HexagonPosition)obj;
             return Equals(Obj);
         }
-        public bool Equals(HexagonPosition Position)
+        /// <inheritdoc cref="Equals(object)"/>
+        public bool Equals(HexagonPosition obj)
         {
-            if (x == Position.x && y == Position.y && z == Position.z)
+            if (X == obj.X && Y == obj.Y && Z == obj.Z)
                 return true;
             return false;
         }
+        /// <inheritdoc/>
         public object Clone() => new HexagonPosition(this);
 
-
-
-        public static HexagonPosition operator +(HexagonPosition A, HexagonPosition B)
-        {
-            HexagonPosition C = (HexagonPosition)A.Clone();
-            C.MoveXUp(B.x);
-            C.MoveYUp(B.y);
-            C.MoveZUp(B.z);
-            return C;
-        }
-        public static HexagonPosition operator -(HexagonPosition A, HexagonPosition B)
-        {
-            HexagonPosition C = (HexagonPosition)A.Clone();
-            C.MoveXDown(B.x);
-            C.MoveYDown(B.y);
-            C.MoveZDown(B.z);
-            return C;
-        }
-        public static HexagonPosition operator *(HexagonPosition A, int B)
-        {
-            HexagonPosition C = (HexagonPosition)A.Clone();
-            B -= 1;
-            C.MoveXUp(A.x * B);
-            C.MoveYUp(A.y * B);
-            C.MoveZUp(A.z * B);
-            return C;
-        }
-        public static bool operator !=(HexagonPosition A, HexagonPosition B)
-        {
-            return !A.Equals(B);
-        }
-        public static bool operator ==(HexagonPosition A, HexagonPosition B)
-        {
-            return A.Equals(B);
-        }
-
+        
 
 
         /// <summary>
@@ -261,45 +218,44 @@ namespace m9studio.HexagonMatrix
         {
             Position A = new Position();
 
-            if(z == 0)
+            if(Z == 0)
             {
-                A.x = x;
-                A.y = y - (x / 2.0);
+                A.X = X;
+                A.Y = Y - (X / 2.0);
             }
-            else if(x == 0)
+            else if(X == 0)
             {
-                A.x = -z;
-                A.y = y - (z / 2.0);
+                A.X = -Z;
+                A.Y = Y - (Z / 2.0);
             }
             else
             {
-                A.x = x - z;
-                A.y = -(x + z) / 2.0;
+                A.X = X - Z;
+                A.Y = -(X + Z) / 2.0;
             }
             if(CircumscribedCircle)
             {
                 const double x = 0.5;
                 const double y = 0.8660254037844386;
-                A.x *= x * 1.5;
-                A.y *= y;
+                A.X *= x * 1.5;
+                A.Y *= y;
             }
             else
             {
                 const double x = 0.5773502691896258;
                 const double y = 1;
-                A.x *= x * 1.5;
-                A.y *= y;
+                A.X *= x * 1.5;
+                A.Y *= y;
             }
             return A;
         }
         public Position ToPosition() => ToPosition(true);
 
 
-
         public double Distance(HexagonPosition Position, bool CircumscribedCircle)
         {
             Position A = (this - Position).ToPosition(CircumscribedCircle);
-            return Math.Sqrt(Math.Pow(A.x, 2) + Math.Pow(A.y, 2));
+            return Math.Sqrt(Math.Pow(A.X, 2) + Math.Pow(A.Y, 2));
         }
         public double Distance(HexagonPosition Position) => Distance(Position, true);
     }

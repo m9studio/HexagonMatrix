@@ -12,23 +12,13 @@ namespace m9studio.HexagonMatrix
         private T[] matrixZ;
         private T matrixCenter;
         private int radius;
-        /// <summary>
-        /// Радиус матрицы.
-        /// </summary>
-        public int Radius { get => radius; }
-        /// <summary>
-        /// Кол-во ячеек в матрице.
-        /// </summary>
-        /// <remarks>
-        /// Length = 3 * Radius^2 + 3 * Radius + 1;
-        /// </remarks>
-        public int Length { get => 3 * (int)Math.Pow(Radius, 2) + 3 * Radius + 1; }
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Radius/*'/>
+        public int Radius => radius;
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Length/*'/>
+        public int Length => 3 * (int)Math.Pow(Radius, 2) + 3 * Radius + 1;
 
         #region Конструктор
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="radius">Радиус создаваемой матрицы.</param>
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Constructor/*'/>
         public HexagonMatrix(int radius)
         {
             if (radius < 0)
@@ -41,18 +31,11 @@ namespace m9studio.HexagonMatrix
             matrixZ = new T[radius];
             this.radius = radius;
         }
-        /// <summary>
-        /// Конструктор, с предварительным заполенением.
-        /// </summary>
-        /// <param name="radius">Радиус создаваемой матрицы.</param>
-        /// <param name="obj">Объект, которой будет заполнена матрица.</param>
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/ConstructorObj/*'/>
         public HexagonMatrix(int radius, T obj) : this(radius) => Fill(obj);
         #endregion
 
-        /// <summary>
-        /// Заполнение матрицы.
-        /// </summary>
-        /// <param name="obj">Объект, которой будет заполнена матрица.</param>
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Fill/*'/>
         public void Fill(T obj)
         {
             for (int i = 0; i < Radius; i++)
@@ -71,19 +54,9 @@ namespace m9studio.HexagonMatrix
         }
 
         #region Get
-        /// <summary>
-        /// Получение элемента матрицы.
-        /// </summary>
-        /// <param name="Position">Позиция.</param>
-        /// <returns>Элемент в матрице, на данной позиции.</returns>
-        public T Get(HexagonPosition Position) => Get(Position.x, Position.y, Position.z);
-        /// <summary>
-        /// Получение элемента матрицы.
-        /// </summary>
-        /// <param name="x">Позиция x.</param>
-        /// <param name="y">Позиция y.</param>
-        /// <param name="z">Позиция z.</param>
-        /// <returns>Элемент в матрице, на данной позиции.</returns>
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Get/XYZ/*'/>
+        public T Get(HexagonPosition Position) => Get(Position.X, Position.Y, Position.Z);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Get/XYZ/*'/>
         public T Get(int x, int y, int z)
         {
             if (!isLocated(x, y, z))
@@ -103,89 +76,37 @@ namespace m9studio.HexagonMatrix
             else
                 return matrixCenter;
         }
-        /// <summary>
-        /// Получение элемента матрицы по x и y.
-        /// </summary>
-        /// <param name="Position">Позиция, из которой будут браться x и y.</param>
-        /// <returns>Элемент в матрице, на данной позиции.</returns>
-        public T GetXY(HexagonPosition Position) => GetXY(Position.x, Position.y);
-        /// <summary>
-        /// Получение элемента матрицы по x и y.
-        /// </summary>
-        /// <param name="x">Позиция x.</param>
-        /// <param name="y">Позиция y.</param>
-        /// <returns>Элемент в матрице, на данной позиции.</returns>
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Get/XY/*'/>
+        public T GetXY(HexagonPosition Position) => GetXY(Position.X, Position.Y);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Get/XY/*'/>
         public T GetXY(int x, int y) => Get(x, y, 0);
-        /// <summary>
-        /// Получение элемента матрицы по x и z.
-        /// </summary>
-        /// <param name="Position">Позиция, из которой будут браться x и z.</param>
-        /// <returns>Элемент в матрице, на данной позиции.</returns>
-        public T GetXZ(HexagonPosition Position) => GetXZ(Position.x, Position.z);
-        /// <summary>
-        /// Получение элемента матрицы по x и z.
-        /// </summary>
-        /// <param name="x">Позиция x.</param>
-        /// <param name="z">Позиция z.</param>
-        /// <returns>Элемент в матрице, на данной позиции.</returns>
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Get/XZ/*'/>
+        public T GetXZ(HexagonPosition Position) => GetXZ(Position.X, Position.Z);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Get/XZ/*'/>
         public T GetXZ(int x, int z) => Get(x, 0, z);
-        /// <summary>
-        /// Получение элемента матрицы по y и z.
-        /// </summary>
-        /// <param name="Position">Позиция, из которой будут браться y и z.</param>
-        /// <returns>Элемент в матрице, на данной позиции.</returns>
-        public T GetYZ(HexagonPosition Position) => GetYZ(Position.y, Position.z);
-        /// <summary>
-        /// Получение элемента матрицы по y и z.
-        /// </summary>
-        /// <param name="y">Позиция y.</param>
-        /// <param name="z">Позиция z.</param>
-        /// <returns>Элемент в матрице, на данной позиции.</returns>
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Get/YZ/*'/>
+        public T GetYZ(HexagonPosition Position) => GetYZ(Position.Y, Position.Z);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Get/YZ/*'/>
         public T GetYZ(int y, int z) => Get(0, y, z);
-        /// <summary>
-        /// Получение элемента матрицы на линии x.
-        /// </summary>
-        /// <param name="Position">Позиция, из которой будет браться x.</param>
-        /// <returns>Элемент в матрице, на данной позиции.</returns>
-        public T GetX(HexagonPosition Position) => GetX(Position.x);
-        /// <summary>
-        /// Получение элемента матрицы на линии x.
-        /// </summary>
-        /// <param name="x">Позиция x.</param>
-        /// <returns>Элемент в матрице, на данной позиции.</returns>
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Get/X/*'/>
+        public T GetX(HexagonPosition Position) => GetX(Position.X);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Get/X/*'/>
         public T GetX(int x) => Get(x, 0, 0);
-        /// <summary>
-        /// Получение элемента матрицы на линии y.
-        /// </summary>
-        /// <param name="Position">Позиция, из которой будет браться y.</param>
-        /// <returns>Элемент в матрице, на данной позиции.</returns>
-        public T GetY(HexagonPosition Position) => GetY(Position.y);
-        /// <summary>
-        /// Получение элемента матрицы на линии y.
-        /// </summary>
-        /// <param name="y">Позиция y.</param>
-        /// <returns>Элемент в матрице, на данной позиции.</returns>
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Get/Y/*'/>
+        public T GetY(HexagonPosition Position) => GetY(Position.Y);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Get/Y/*'/>
         public T GetY(int y) => Get(0, y, 0);
-        /// <summary>
-        /// Получение элемента матрицы на линии z.
-        /// </summary>
-        /// <param name="Position">Позиция, из которой будет браться z.</param>
-        /// <returns>Элемент в матрице, на данной позиции.</returns>
-        public T GetZ(HexagonPosition Position) => GetZ(Position.z);
-        /// <summary>
-        /// Получение элемента матрицы на линии z.
-        /// </summary>
-        /// <param name="z">Позиция z.</param>
-        /// <returns>Элемент в матрице, на данной позиции.</returns>
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Get/Z/*'/>
+        public T GetZ(HexagonPosition Position) => GetZ(Position.Z);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Get/Z/*'/>
         public T GetZ(int z) => Get(0, 0, z);
-        /// <summary>
-        /// Получение центрального элемента матрицы.
-        /// </summary>
-        /// <returns>Центральный элемент матрицы.</returns>
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Get/Center/*'/>
         public T GetCenter() => matrixCenter;
         #endregion
         #region Set
-        public bool Set(T obj, HexagonPosition Position) => Set(obj, Position.x, Position.y, Position.z);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Set/XYZ/*'/>
+        public bool Set(T obj, HexagonPosition Position) => Set(obj, Position.X, Position.Y, Position.Z);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Set/XYZ/*'/>
         public bool Set(T obj, int x, int y, int z)
         {
             if (!isLocated(x, y, z))
@@ -206,22 +127,36 @@ namespace m9studio.HexagonMatrix
                 matrixCenter = obj;
             return true;
         }
-        public bool SetXY(T obj, HexagonPosition Position) => SetXY(obj, Position.x, Position.y);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Set/XY/*'/>
+        public bool SetXY(T obj, HexagonPosition Position) => SetXY(obj, Position.X, Position.Y);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Set/XY/*'/>
         public bool SetXY(T obj, int x, int y) => Set(obj, x, y, 0);
-        public bool SetXZ(T obj, HexagonPosition Position) => SetXZ(obj, Position.x, Position.z);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Set/XZ/*'/>
+        public bool SetXZ(T obj, HexagonPosition Position) => SetXZ(obj, Position.X, Position.Z);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Set/XZ/*'/>
         public bool SetXZ(T obj, int x, int z) => Set(obj, x, 0, z);
-        public bool SetYZ(T obj, HexagonPosition Position) => SetYZ(obj, Position.y, Position.z);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Set/YZ/*'/>
+        public bool SetYZ(T obj, HexagonPosition Position) => SetYZ(obj, Position.Y, Position.Z);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Set/YZ/*'/>
         public bool SetYZ(T obj, int y, int z) => Set(obj, 0, y, z);
-        public bool SetX(T obj, HexagonPosition Position) => SetX(obj, Position.x);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Set/X/*'/>
+        public bool SetX(T obj, HexagonPosition Position) => SetX(obj, Position.X);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Set/X/*'/>
         public bool SetX(T obj, int x) => Set(obj, x, 0, 0);
-        public bool SetY(T obj, HexagonPosition Position) => SetY(obj, Position.y);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Set/Y/*'/>
+        public bool SetY(T obj, HexagonPosition Position) => SetY(obj, Position.Y);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Set/Y/*'/>
         public bool SetY(T obj, int y) => Set(obj, 0, y, 0);
-        public bool SetZ(T obj, HexagonPosition Position) => SetZ(obj, Position.z);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Set/Z/*'/>
+        public bool SetZ(T obj, HexagonPosition Position) => SetZ(obj, Position.Z);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Set/Z/*'/>
         public bool SetZ(T obj, int z) => Set(obj, 0, 0, z);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/Set/Center/*'/>
         public bool SetCenter(T obj) => Set(obj, 0, 0, 0);
         #endregion
-
-        public bool isLocated(HexagonPosition Position) => isLocated(Position.x, Position.y, Position.z);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/isLocated/*'/>
+        public bool isLocated(HexagonPosition Position) => isLocated(Position.X, Position.Y, Position.Z);
+        /// <include file='./lang-default.xml' path='Root/HexagonMatrix/isLocated/*'/>
         public bool isLocated(int x, int y, int z)
         {
             if (x > 0 && y > 0 && z > 0)
@@ -259,12 +194,15 @@ namespace m9studio.HexagonMatrix
             matrix[A - 1] = obj;
             return true;
         }
-
-
+        
+        
+        
+        /// <inheritdoc/>
         public override string ToString()
         {
             return $"HexagonMatrix: {{Radius: {Radius};}};";
         }
+        /// <inheritdoc/>
         public override bool Equals(object obj)
         {
             if (Object.ReferenceEquals(this, obj))
@@ -284,28 +222,29 @@ namespace m9studio.HexagonMatrix
             }
             return Equals(Obj);
         }
-        public bool Equals(HexagonMatrix<T> Obj)
+        /// <inheritdoc cref="Equals(object)"/>
+        public bool Equals(HexagonMatrix<T> obj)
         {
-            if (Obj.Radius != this.Radius)
+            if (obj.Radius != this.Radius)
                 return false;
-            if (!this.matrixCenter.Equals(Obj.matrixCenter))
+            if (!this.matrixCenter.Equals(obj.matrixCenter))
                 return false;
             for (int i = 0; i < this.Radius; i++)
             {
                 for (int j = 0; j < this.Radius; j++)
                 {
-                    if (!this.matrixYZ[i, j].Equals(Obj.matrixYZ[i, j]))
+                    if (!this.matrixYZ[i, j].Equals(obj.matrixYZ[i, j]))
                         return false;
-                    if (!this.matrixXY[i, j].Equals(Obj.matrixXY[i, j]))
+                    if (!this.matrixXY[i, j].Equals(obj.matrixXY[i, j]))
                         return false;
-                    if (!this.matrixXZ[i, j].Equals(Obj.matrixXZ[i, j]))
+                    if (!this.matrixXZ[i, j].Equals(obj.matrixXZ[i, j]))
                         return false;
                 }
-                if (!this.matrixX[i].Equals(Obj.matrixX[i]))
+                if (!this.matrixX[i].Equals(obj.matrixX[i]))
                     return false;
-                if (!this.matrixY[i].Equals(Obj.matrixY[i]))
+                if (!this.matrixY[i].Equals(obj.matrixY[i]))
                     return false;
-                if (!this.matrixZ[i].Equals(Obj.matrixZ[i]))
+                if (!this.matrixZ[i].Equals(obj.matrixZ[i]))
                     return false;
             }
             return true;

@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace m9studio.HexagonMatrix
+﻿namespace m9studio.HexagonMatrix
 {
+    /// <include file='./lang-default.xml' path='Root/Position/Position/*'/>
     public struct Position
     {
-        public double x;
-        public double y;
+        /// <include file='./lang-default.xml' path='Root/Position/X/*'/>
+        public double X;
+        /// <include file='./lang-default.xml' path='Root/Position/Y/*'/>
+        public double Y;
+        /// <include file='./lang-default.xml' path='Root/Position/ConstructorXY/*'/>
         public Position(double x, double y)
         {
-            this.x = x;
-            this.y = y;
+            this.X = x;
+            this.Y = y;
         }
     }
 }

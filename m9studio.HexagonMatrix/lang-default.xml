@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+  <Position>
+    <Position><summary>Структура, представляющая декартовые координаты.</summary></Position>
+    <HexagonPosition><summary>Структура, представляющая координаты для гексагональной матрицы.</summary></HexagonPosition>
+    <X><summary>Позиция X.</summary></X>
+    <Y><summary>Позиция Y.</summary></Y>
+    <Z><summary>Позиция Z.</summary></Z>
+    <ConstructorXY>
+      <summary>Конструктор</summary>
+      <param name="x">Позиция X.</param>
+      <param name="y">Позиция Y.</param>
+    </ConstructorXY>
+    <ConstructorXYZ>
+      <summary>Конструктор, при котором хоть одно значение из x, y или z, должно быть 0;</summary>
+      <remarks>Все позиции должны быть не меньше 0.</remarks>
+      <param name="x">Позиция X.</param>
+      <param name="y">Позиция Y.</param>
+      <param name="z">Позиция Z.</param>
+    </ConstructorXYZ>
+    <ConstructorObj>
+      <summary>Копирует позицию с другой позиции.</summary>
+      <param name="obj">Позиция которую копируем.</param>
+    </ConstructorObj>
+    <Move>
+      <X>
+        <Up><summary>переместиться по X, на одну позицию вверх.</summary></Up>
+        <Down><summary>переместиться по X, на одну позицию вниз.</summary></Down>
+        <Step><summary>переместиться по X, step раз вверх.</summary></Step>
+        <UpStep><summary>переместиться по X, step раз вверх.</summary></UpStep>
+        <DownStep><summary>переместиться по X, step раз вниз.</summary></DownStep>
+      </X>
+      <Y>
+        <Up><summary>переместиться по Y, на одну позицию вверх.</summary></Up>
+        <Down><summary>переместиться по Y, на одну позицию вниз.</summary></Down>
+        <Step><summary>переместиться по Y, step раз вверх.</summary></Step>
+        <UpStep><summary>переместиться по Y, step раз вверх.</summary></UpStep>
+        <DownStep><summary>переместиться по Y, step раз вниз.</summary></DownStep>
+      </Y>
+      <Z>
+        <Up><summary>переместиться по Z, на одну позицию вверх.</summary></Up>
+        <Down><summary>переместиться по Z, на одну позицию вниз.</summary></Down>
+        <Step><summary>переместиться по Z, step раз вверх.</summary></Step>
+        <UpStep><summary>переместиться по Z, step раз вверх.</summary></UpStep>
+        <DownStep><summary>переместиться по Z, step раз вниз.</summary></DownStep>
+      </Z>
+    </Move>
+  </Position>
+  <HexagonMatrix>
+    <Radius><summary>Радиус матрицы.</summary></Radius>
+    <Length>
+      <summary>Кол-во ячеек в матрице.</summary>
+      <remarks>Length = 3 * Radius^2 + 3 * Radius + 1;</remarks>
+    </Length>
+    <Constructor>
+      <summary>Конструктор.</summary>
+      <param name="radius">Радиус создаваемой матрицы.</param>
+    </Constructor>
+    <ConstructorObj>
+      <summary>Конструктор, с предварительным заполенением.</summary>
+      <param name="radius">Радиус создаваемой матрицы.</param>
+      <param name="obj">Объект, которой будет заполнена матрица.</param>
+    </ConstructorObj>
+    <Fill>
+      <summary>Заполнение матрицы.</summary>
+      <param name="obj">Объект, которой будет заполнена матрица.</param>
+    </Fill>
+    <Get>
+      <XYZ>
+        <summary>Получение элемента матрицы.</summary>
+        <param name="Position">Позиция.</param>
+        <param name="x">Позиция X.</param>
+        <param name="y">Позиция Y.</param>
+        <param name="z">Позиция Z.</param>
+        <returns>Элемент в матрице, на данной позиции.</returns>
+      </XYZ>
+      <XY>
+        <summary>Получение элемента матрицы по X и Y.</summary>
+        <param name="Position">Позиция, из которой будут браться X и Y.</param>
+        <param name="x">Позиция X.</param>
+        <param name="y">Позиция Y.</param>
+        <returns>Элемент в матрице, на данной позиции.</returns>
+      </XY>
+      <XZ>
+        <summary>Получение элемента матрицы по X и Z.</summary>
+        <param name="Position">Позиция, из которой будут браться X и Z.</param>
+        <param name="x">Позиция X.</param>
+        <param name="z">Позиция Z.</param>
+        <returns>Элемент в матрице, на данной позиции.</returns>
+      </XZ>
+      <YZ>
+        <summary>Получение элемента матрицы по Y и Z.</summary>
+        <param name="Position">Позиция, из которой будут браться Y и Z.</param>
+        <param name="y">Позиция Y.</param>
+        <param name="z">Позиция Z.</param>
+        <returns>Элемент в матрице, на данной позиции.</returns>
+      </YZ>
+      <X>
+        <summary>Получение элемента матрицы на линии X.</summary>
+        <param name="Position">Позиция, из которой будут браться X.</param>
+        <param name="x">Позиция X.</param>
+        <returns>Элемент в матрице, на данной позиции.</returns>
+      </X>
+      <Y>
+        <summary>Получение элемента матрицы на линии Y.</summary>
+        <param name="Position">Позиция, из которой будут браться Y.</param>
+        <param name="y">Позиция Y.</param>
+        <returns>Элемент в матрице, на данной позиции.</returns>
+      </Y>
+      <Z>
+        <summary>Получение элемента матрицы на линии Z.</summary>
+        <param name="Position">Позиция, из которой будут браться Z.</param>
+        <param name="z">Позиция Z.</param>
+        <returns>Элемент в матрице, на данной позиции.</returns>
+      </Z>
+      <Center>
+        <summary>Получение центрального элемента матрицы.</summary>
+        <returns>Центральный элемент матрицы.</returns>
+      </Center>
+    </Get>
+    <Set>
+      <XYZ>
+        <summary>Изменение элемента матрицы по заданной позиции.</summary>
+        <param name="obj">Устанавливаемый объект.</param>
+        <param name="Position">Позиция.</param>
+        <param name="x">Позиция X.</param>
+        <param name="y">Позиция Y.</param>
+        <param name="z">Позиция Z.</param>
+        <returns>Результат операции, true в случае успеха.</returns>
+      </XYZ>
+      <XY>
+        <summary>Изменение элемента матрицы по X и Y.</summary>
+        <param name="obj">Устанавливаемый объект.</param>
+        <param name="Position">Позиция, из которой будут браться X и Y.</param>
+        <param name="x">Позиция X.</param>
+        <param name="y">Позиция Y.</param>
+        <returns>Результат операции, true в случае успеха.</returns>
+      </XY>
+      <XZ>
+        <summary>Изменение элемента матрицы по X и Z.</summary>
+        <param name="obj">Устанавливаемый объект.</param>
+        <param name="Position">Позиция, из которой будут браться X и Z.</param>
+        <param name="x">Позиция X.</param>
+        <param name="z">Позиция Z.</param>
+        <returns>Результат операции, true в случае успеха.</returns>
+      </XZ>
+      <YZ>
+        <summary>Изменение элемента матрицы по Y и Z.</summary>
+        <param name="obj">Устанавливаемый объект.</param>
+        <param name="Position">Позиция, из которой будут браться Y и Z.</param>
+        <param name="y">Позиция Y.</param>
+        <param name="z">Позиция Z.</param>
+        <returns>Результат операции, true в случае успеха.</returns>
+      </YZ>
+      <X>
+        <summary>Изменение элемента матрицы на линии X.</summary>
+        <param name="obj">Устанавливаемый объект.</param>
+        <param name="Position">Позиция, из которой будут браться X.</param>
+        <param name="x">Позиция X.</param>
+        <returns>Результат операции, true в случае успеха.</returns>
+      </X>
+      <Y>
+        <summary>Изменение элемента матрицы на линии Y.</summary>
+        <param name="obj">Устанавливаемый объект.</param>
+        <param name="Position">Позиция, из которой будут браться Y.</param>
+        <param name="y">Позиция Y.</param>
+        <returns>Результат операции, true в случае успеха.</returns>
+      </Y>
+      <Z>
+        <summary>Изменение элемента матрицы на линии Z.</summary>
+        <param name="obj">Устанавливаемый объект.</param>
+        <param name="Position">Позиция, из которой будут браться Z.</param>
+        <param name="z">Позиция Z.</param>
+        <returns>Результат операции, true в случае успеха.</returns>
+      </Z>
+      <Center>
+        <summary>Изменение центрального элемента матрицы.</summary>
+        <param name="obj">Устанавливаемый объект.</param>
+        <returns>Результат операции, true в случае успеха.</returns>
+      </Center>
+    </Set>
+    <isLocated>
+      <summary>Проверка, на то, корректна позиция и существет ли она в матрице.</summary>
+      <param name="Position">Позиция.</param>
+      <param name="x">Позиция X.</param>
+      <param name="y">Позиция Y.</param>
+      <param name="z">Позиция Z.</param>
+      <returns>true, в случае если позиция существует в матрице.</returns>
+    </isLocated>
+  </HexagonMatrix>
+</Root>
