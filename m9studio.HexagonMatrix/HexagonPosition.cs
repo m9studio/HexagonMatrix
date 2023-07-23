@@ -206,14 +206,10 @@ namespace m9studio.HexagonMatrix
         /// <inheritdoc/>
         public object Clone() => new HexagonPosition(this);
 
-        
 
 
-        /// <summary>
-        /// R = 0.5;
-        /// </summary>
-        /// <param name="CircumscribedCircle">inscribed circle == !circumscribed circle</param>
-        /// <returns></returns>
+
+        /// <include file='./lang-default.xml' path='Root/Position/ToPositionCircumscribedCircle/*'/>
         public Position ToPosition(bool CircumscribedCircle)
         {
             Position A = new Position();
@@ -249,14 +245,16 @@ namespace m9studio.HexagonMatrix
             }
             return A;
         }
+        /// <include file='./lang-default.xml' path='Root/Position/ToPosition/*'/>
         public Position ToPosition() => ToPosition(true);
 
-
+        /// <include file='./lang-default.xml' path='Root/Position/DistanceCircumscribedCircle/*'/>
         public double Distance(HexagonPosition Position, bool CircumscribedCircle)
         {
             Position A = (this - Position).ToPosition(CircumscribedCircle);
             return Math.Sqrt(Math.Pow(A.X, 2) + Math.Pow(A.Y, 2));
         }
+        /// <include file='./lang-default.xml' path='Root/Position/Distance/*'/>
         public double Distance(HexagonPosition Position) => Distance(Position, true);
     }
 }

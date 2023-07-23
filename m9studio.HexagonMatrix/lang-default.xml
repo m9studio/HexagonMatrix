@@ -45,6 +45,30 @@
         <DownStep><summary>переместиться по Z, step раз вниз.</summary></DownStep>
       </Z>
     </Move>
+    <ToPosition>
+      <summary>Преобразует гексагональную систему координат в декартовую систему координат.</summary>
+      <remarks>Размер одного шестиугольника, берется по описанной окружности с радиусом 0.5</remarks>
+      <returns>Декартовая система координат.</returns>
+    </ToPosition>
+    <ToPositionCircumscribedCircle>
+      <summary>Преобразует гексагональную систему координат в декартовую систему координат.</summary>
+      <remarks>Размер одного шестиугольника, берется по описанной или вписанной окружности с радиусом 0.5</remarks>
+      <param name="CircumscribedCircle">Являится ли окружность описанная. false если окружность вписанная.</param>
+      <returns>Декартовая система координат.</returns>
+    </ToPositionCircumscribedCircle>
+    <Distance>
+      <summary>Метод, для вычисления растояния от данной координаты, до заданной.</summary>
+      <remarks>Размер одного шестиугольника, берется по описанной окружности с радиусом 0.5</remarks>
+      <param name="Position">Позиция, до которой будет вычисляться расстояние.</param>
+      <returns>Расстояние.</returns>
+    </Distance>
+    <DistanceCircumscribedCircle>
+      <summary>Метод, для вычисления растояния от данной координаты, до заданной.</summary>
+      <remarks>Размер одного шестиугольника, берется по описанной или вписанной окружности с радиусом 0.5</remarks>
+      <param name="CircumscribedCircle">Являится ли окружность описанная. false если окружность вписанная.</param>
+      <param name="Position">Позиция, до которой будет вычисляться расстояние.</param>
+      <returns>Расстояние.</returns>
+    </DistanceCircumscribedCircle>
   </Position>
   <HexagonMatrix>
     <Radius><summary>Радиус матрицы.</summary></Radius>
