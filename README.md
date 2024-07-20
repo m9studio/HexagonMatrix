@@ -20,8 +20,10 @@ How the matrix works:
   //this function call will not be an error
   hexagon.Get(2, 3, -1);
   ``` 
-  Also works with "Set" methods. 
-  ![<img src="https://user-images.githubusercontent.com/44808807/198515476-e23f569c-f8f7-4486-8f52-8e502b5b14ed.png" width="250">]
+  Also works with "Set" methods.
+  <br>
+  <img src="https://user-images.githubusercontent.com/44808807/198515476-e23f569c-f8f7-4486-8f52-8e502b5b14ed.png" width="250">
+  <br>
 8) Getting data from an array
   ```rb
   hexagon.Get(0, 0, 3);
