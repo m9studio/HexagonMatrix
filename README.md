@@ -14,31 +14,31 @@ How the matrix works:
 6) These examples show how to take data from a hexagonal matrix:
 7) Getting data from a square matrix
   ```rb
-  obj.Get(2, 3, 0);
-  obj.GetXY(2, 3);
+  hexagon.Get(2, 3, 0);
+  hexagon.GetXY(2, 3);
 
   //this function call will not be an error
-  obj.Get(2, 3, -1);
+  hexagon.Get(2, 3, -1);
   ``` 
   Also works with "Set" methods. 
-  ![4](https://user-images.githubusercontent.com/44808807/198515476-e23f569c-f8f7-4486-8f52-8e502b5b14ed.png)
+  ![<img src="https://user-images.githubusercontent.com/44808807/198515476-e23f569c-f8f7-4486-8f52-8e502b5b14ed.png" width="250">]
 8) Getting data from an array
   ```rb
-  obj.Get(0, 0, 3);
-  obj.GetZ(3);
+  hexagon.Get(0, 0, 3);
+  hexagon.GetZ(3);
 
   //this function call will not be an error
-  obj.Get(-2, -1, 3);
+  hexagon.Get(-2, -1, 3);
   ``` 
   Also works with "Set" methods. 
   ![5](https://user-images.githubusercontent.com/44808807/198515490-94a8c999-e827-4572-8353-499d313a48ab.png)
 9) Getting the central data
   ```rb
-  obj.Get(0, 0, 0);
-  obj.GetCenter();
+  hexagon.Get(0, 0, 0);
+  hexagon.GetCenter();
 
   //this function call will not be an error
-  obj.Get(-2, 0, -1);
+  hexagon.Get(-2, 0, -1);
   ``` 
   Also works with "Set" methods. 
   ![6](https://user-images.githubusercontent.com/44808807/198515498-5375e9bf-7365-41db-95aa-c9013ef7d5d3.png)
